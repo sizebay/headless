@@ -1,14 +1,27 @@
 # @sizebay/headless
-Sizebay Headless Package. O conceito de Headless indica que toda a disponibilidade do Provador Virtual será concentrada somente nos métodos e chamadas para os serviços da Sizebay, enquanto o cliente/desenvolvedor será responsável pelo layout. 
+Sizebay Headless Package. The concept of Headless indicates that all the availability of the Virtual Fitting Room will be concentrated only in the methods and calls to Sizebay services, while the client/developer will be responsible for the layout.
 
-# Ordem de Módulos Recomendada
-1. `getProduct`: busca os dados do produto primeiro, para verificar se o Provador Virtual é compatível com aquela sessão
-2. `createUser`: cria o usuário com base nos dados informados na UI. Você não precisa buscar o usuário novamente, pois o retorno deste método já retorna a assinatura atualizada.
-3. `getRecommendation`: retorna a recomendação com base no perfil ativo do usuário
-4. `updateUser`: caso o usuário altere medidas, gênero ou dados do shape do corpo. Você não precisa buscar o usuário novamente, pois o retorno deste método já retorna a assinatura atualizada.
+# Installation
+WIP
 
-# Boas Práticas
-1. Utilize sempre os types assistidos da lib (e.g `import { type SizebayProduct } from '@sizebay/headless')` para manter a assinatura dos seus objetos consistentes
-2. Caso a criação de custom hooks seja feita em volta desses métodos, lembre-se de usar corretamente `useMemo` e `useCallback` para evitar memory drains and obsessive computing
-3. Lembre-se que o headless não oferece UI alguma. O intuito é expandir a integração da Sizebay com qualquer plataforma que tenha o interesse de integrar nossos sistemas e nosso algoritmo de recomendação.
-4. Caso venha a fazer stress test com a lib ou com os recursos que a mesma oferece, entre em contato com a Sizebay antes e compartilhe o scheduling desse stress test, para que possamos acompanhar as métricas do nosso lado.
+# Examples
+WIP
+
+# Bug Reporting
+WIP
+
+# Roadmap
+You can check the details on what is being worked [here](https://github.com/sizebay/headless/issues)
+
+
+# Recommended Module Order
+1. `getProduct`: first, fetch the product data to check if the Virtual Fitting Room is compatible with that session.
+2. `createUser`: creates the user based on the data provided in the UI. You don't need to fetch the user again, as this method's return already includes the updated signature.
+3. `getRecommendation`: returns the recommendation based on the active user profile.
+4. `updateUser`: if the user changes measurements, gender, or body shape data. You don't need to fetch the user again, as this method's return already includes the updated signature.
+
+# Best Practices
+1. Always use the assisted types from the library (e.g., import { type SizebayProduct } from '@sizebay/headless') to keep your object signatures consistent.
+2. If custom hooks are created around these methods, remember to use useMemo and useCallback correctly to avoid memory drains and excessive computing.
+3. Remember that the headless package offers no UI. The aim is to expand the integration of Sizebay with any platform interested in integrating our systems and recommendation algorithm.
+4. If you plan to perform stress testing with the library or its resources, contact Sizebay beforehand and share the scheduling of this stress test so we can monitor the metrics on our side.
