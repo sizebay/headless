@@ -93,6 +93,17 @@ interface UserParams {
   profileId?: string;
 }
 
+interface Measures {
+  chest: number;
+  fist: number;
+  hip: number;
+  insideLeg: number;
+  neck: number;
+  sleeve: number;
+  underBust: number;
+  waist: number;
+}
+
 export interface SizebayProfile {
   height: number;
   weight: number;
@@ -101,6 +112,7 @@ export interface SizebayProfile {
   bodyShapeChest: SizebayBodyShapes;
   bodyShapeWaist: SizebayBodyShapes;
   bodyShapeHip: SizebayBodyShapes;
+  measures?: Measures;
 }
 
 interface InternalSizebayProfile {
