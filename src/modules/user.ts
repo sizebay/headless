@@ -3,16 +3,6 @@ import parseBodyShape from "../utils/parse-body-shape.ts";
 
 const EMPTY_USERNAME = "szb-profile-no-name";
 
-async function getUserId(): Promise<string> {
-  try {
-    const { data } = await api.get("/api/me/session-id");
-
-    return data;
-  } catch (_error) {
-    return "";
-  }
-}
-
 /**
  * Retrieves the user's profiles from the API. It'll use the SID from the cookie to authenticate the request.
  * @param params {UserParams}
@@ -50,7 +40,7 @@ export async function sendUser(
       bodyShapeHip: parseBodyShape(payload.bodyShapeHip),
     };
 
-    const sid = await getUserId();
+    const sid = window.SizebaySDK.userId;
 
     const builtPayload = {
       id: payload.id || null,

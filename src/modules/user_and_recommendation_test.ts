@@ -1,7 +1,10 @@
 import { assertEquals } from "@std/assert";
-import { Cookie, setCookie } from "@std/http/cookie";
 import { sendUser, type SizebayProfile, SizebayBodyShapes } from "./user.ts";
+import getRecommendation, {
+  type SizebayRecommendation,
+} from "./recommendation.ts";
 import parseBodyShape from "../utils/parse-body-shape.ts";
+import init from "./init.ts";
 
 const USER: SizebayProfile = {
   height: 190,
@@ -13,12 +16,10 @@ const USER: SizebayProfile = {
   bodyShapeHip: parseBodyShape(SizebayBodyShapes.Normal),
 };
 
-Deno.test("setUser", async () => {
-  // We need to mock the SID cookie to get the product.
-  const headers = new Headers();
-  const sid: Cookie = { name: "sid", value: "michaeljackson" };
+const EXPECTED_RECOMMENDED_SIZE = "L";
 
-  setCookie(headers, sid);
+Deno.test("setUser", async () => {
+  await init({ tenantId: 1039 });
 
   const user = await sendUser(USER);
 
@@ -33,4 +34,15 @@ Deno.test("setUser", async () => {
   };
 
   assertEquals(foundUser, USER);
+});
+
+Deno.test("getRecommendation", async () => {
+  const PRODUCT_ID = 6834318;
+  const TENANT_ID = 1039;
+
+  const recommendation = await getRecommendation(PRODUCT_ID, TENANT_ID);
+
+  const r = recommendation as SizebayRecommendation;
+
+  assertEquals(r.recommendedSize, EXPECTED_RECOMMENDED_SIZE);
 });
