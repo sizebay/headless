@@ -53,7 +53,7 @@ export async function sendUser(
     const sid = await getUserId();
 
     const builtPayload = {
-      id: null,
+      id: payload.id || null,
       userId: sid,
       name: EMPTY_USERNAME,
       skinType: 0,
@@ -105,6 +105,7 @@ interface Measures {
 }
 
 export interface SizebayProfile {
+  id?: string;
   height: number;
   weight: number;
   age: number;
