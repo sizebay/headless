@@ -36,7 +36,10 @@ api.interceptors.request.use((config) => {
   const headers = new Headers();
   const cookies = getCookies(headers);
 
-  config.params.sid = cookies.sid;
+  if (cookies.sid) {
+    config.params.sid = cookies.sid;
+  }
+
   config.headers = {
     ...config.headers,
     tenant_id: cookies.tenantId,

@@ -1,6 +1,6 @@
-import { assertEquals, assert } from "@std/assert";
+import { assertEquals } from "@std/assert";
 import { Cookie, setCookie } from "@std/http/cookie";
-import getProduct, { Product } from "./product.ts";
+import getProduct, { type Product } from "./product.ts";
 
 const PERMALINK =
   "https://store.sizebay.com/products/nylon-bomber-jacket-in-stone";
