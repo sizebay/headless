@@ -25,6 +25,12 @@ export default async function init(config: SizebaySDKConfig) {
 declare global {
   interface Window {
     SizebaySDK: SizebaySDKConfig;
+    postMessage(message: string, targetOrigin: string): void;
+    addEventListener(
+      type: string,
+      listener: EventListenerOrEventListenerObject,
+      options?: boolean | AddEventListenerOptions
+    ): void;
   }
 }
 
