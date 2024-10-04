@@ -1,5 +1,4 @@
 import axios, { InternalAxiosRequestConfig } from "npm:axios";
-import { getCookies } from "@std/http/cookie";
 import "jsr:@std/dotenv/load";
 
 class Device {
@@ -33,20 +32,22 @@ const api = axios.create({
 api.interceptors.request.use((config) => {
   config.params = config.params || {};
 
-  const headers = new Headers();
-  const cookies = getCookies(headers);
+  let tenantId;
+  let countryValue;
 
-  if (cookies.sid) {
-    config.params.sid = cookies.sid;
+  if (window.SizebaySDK) {
+    config.params.sid = window.SizebaySDK.userId;
+    tenantId = window.SizebaySDK.tenantId;
+    countryValue = window.SizebaySDK.country;
   }
 
   config.headers = {
     ...config.headers,
-    tenant_id: cookies.tenantId,
+    tenant_id: String(tenantId),
     device: getCurrentDevice(),
-    "x-szb-tenant-id": cookies.tenantId,
+    "x-szb-tenant-id": String(tenantId),
     "x-szb-device": getCurrentDevice(),
-    "x-szb-country": cookies.countryValue! || null,
+    "x-szb-country": countryValue!,
   } as InternalAxiosRequestConfig["headers"] & SizebayHeaders;
 
   return config;
