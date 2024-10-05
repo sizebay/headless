@@ -1,5 +1,4 @@
 import axios, { InternalAxiosRequestConfig } from "npm:axios";
-import "jsr:@std/dotenv/load";
 
 class Device {
   static isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);

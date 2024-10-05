@@ -28,8 +28,8 @@ declare global {
     postMessage(message: string, targetOrigin: string): void;
     addEventListener(
       type: string,
-      listener: EventListenerOrEventListenerObject,
-      options?: boolean | AddEventListenerOptions
+      listener: any,
+      options?: any
     ): void;
   }
 }
