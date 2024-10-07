@@ -18,5 +18,8 @@ fi
 # Generate the deployment
 deno run -A instructions.ts $1
 
+# Copy README to the npm folder
+cp README.md ./npm/README.md
+
 # Deploy /npm to the npm registry
-# npm publish ./npm --access public
+npm publish ./npm --access public
